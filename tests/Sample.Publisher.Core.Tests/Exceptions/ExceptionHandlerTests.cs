@@ -1,10 +1,7 @@
-using System;
-using System.Threading.Tasks;
 using FluentAssertions;
-using Sample.Publisher.WebJob.Services.Exceptions;
-using Xunit;
+using Sample.Publisher.Core.Exceptions;
 
-namespace Sample.Publisher.WebJob.Tests.Services.Exceptions;
+namespace Sample.Publisher.Core.Tests.Exceptions;
 
 public sealed class ExceptionHandlerTests
 {
@@ -48,7 +45,7 @@ public sealed class ExceptionHandlerTests
     }
 }
 
-public sealed class ExceptionHandlerMock : ExceptionHandler
+public sealed class ExceptionHandlerMock : BaseHandler
 {
     public bool Executed { get; private set; } = false;
     public override Type ExceptionType => typeof(ArgumentException);
@@ -60,7 +57,7 @@ public sealed class ExceptionHandlerMock : ExceptionHandler
     }
 }
 
-public sealed class NextHandlerMock : ExceptionHandler
+public sealed class NextHandlerMock : BaseHandler
 {
     public bool Executed { get; private set; } = false;
     public override Type ExceptionType => typeof(NullReferenceException);

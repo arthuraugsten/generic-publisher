@@ -2,22 +2,50 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Sample.Publisher.Core.Exceptions;
 
-public static class ExceptionHandlerExtensions
+public static class ExceptionsExtensions
 {
+    private static void AddHandlers(this IServiceCollection services)
+    {
+        services.AddSingleton<ArgumentHandler>();
+        services.AddSingleton<NullReferenceHandler>();
+        services.AddSingleton<GenericHandler>();
+    }
+
+    public static void ConfigureExceptionHandler(this IServiceCollection services)
+    {
+        ArgumentNullException.ThrowIfNull(services);
+
+        services.AddHandlers();
+
+        services.AddSingleton<BaseHandler>(serviceProvider => serviceProvider.GetRequiredService<GenericHandler>());
+    }
+
+    public static void ConfigureDefaultExceptionHandler(this IServiceCollection services)
+    {
+        ArgumentNullException.ThrowIfNull(services);
+
+        services.AddHandlers();
+
+        services.ConfigureExceptionHandler(options =>
+        {
+            options.AddHandler<ArgumentHandler>();
+            options.AddHandler<NullReferenceHandler>();
+            options.AddHandler<GenericHandler>();
+        });
+    }
+
     /// <summary>
     /// Configure the exceptions which the application should handle during the job execution. It should be defined in the order
     /// that you excpect the application should execute the stack execution.
     /// </summary>
-    public static void ConfigureExceptionHandler(this IServiceCollection services, Action<ExceptionsOptions> configureStack)
+    public static void ConfigureExceptionHandler(this IServiceCollection services, Action<ExceptionsOption> configureStack)
     {
         ArgumentNullException.ThrowIfNull(services);
         ArgumentNullException.ThrowIfNull(configureStack);
 
-        services.AddSingleton<ArgumentHandler>();
-        services.AddSingleton<GenericHandler>();
-        services.AddSingleton<NullReferenceHandler>();
+        services.AddHandlers();
 
-        var options = new ExceptionsOptions();
+        var options = new ExceptionsOption();
         configureStack(options);
 
         if (options.GetItem() is not Type type)
@@ -48,35 +76,5 @@ public static class ExceptionHandlerExtensions
             return firstHandler;
         });
 
-    }
-}
-
-public sealed record ExceptionsOptions
-{
-    private readonly Queue<Type> _queue = new();
-
-    internal bool ContainsGenericHandler { get; private set; } = false;
-
-    public void AddHandler<T>() where T : BaseHandler
-    {
-        var type = typeof(T);
-
-        if (_queue.Contains(type))
-        {
-            return;
-        }
-
-        ContainsGenericHandler = ContainsGenericHandler || type == typeof(GenericHandler);
-        _queue.Enqueue(type);
-    }
-
-    internal Type? GetItem()
-    {
-        if (!_queue.TryDequeue(out var item))
-        {
-            return default;
-        }
-
-        return item;
     }
 }

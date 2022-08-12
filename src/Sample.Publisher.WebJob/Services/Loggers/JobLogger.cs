@@ -1,5 +1,5 @@
-using System.Text;
 using Microsoft.Extensions.Logging;
+using System.Text;
 
 namespace Sample.Publisher.WebJob.Services.Loggers;
 

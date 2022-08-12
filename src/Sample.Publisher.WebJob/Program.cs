@@ -13,3 +13,4 @@ builder.ConfigureExceptionHandler(options =>
 var serviceProvider = builder.BuildServiceProvider();
 
 var handler = serviceProvider.GetRequiredService<BaseHandler>();
+var c = 'a';

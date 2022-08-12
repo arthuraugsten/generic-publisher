@@ -10,6 +10,6 @@ public interface IRequestContext
 public sealed class RequestContext : IRequestContext
 {
     private readonly Stopwatch _stopwatch = new();
-    
+
     public long GetElapsedTime() => _stopwatch.ElapsedMilliseconds;
 }

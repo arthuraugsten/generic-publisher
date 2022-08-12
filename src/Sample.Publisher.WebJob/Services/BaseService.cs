@@ -10,8 +10,8 @@ public abstract class BaseService : IBaseService
 
     protected BaseService(BaseHandler exceptionHandler, IJobLogger logger)
     {
-         _exceptionHandler = exceptionHandler;
-         _logger = logger;
+        _exceptionHandler = exceptionHandler;
+        _logger = logger;
     }
 
     public abstract Task ExecuteProcessAsync(Guid id);

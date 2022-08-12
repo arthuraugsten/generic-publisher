@@ -1,25 +1,24 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.32804.182
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F6B8D833-224D-456A-90CF-C650F37A0596}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Publisher.WebJob", "src\Sample.Publisher.WebJob\Sample.Publisher.WebJob.csproj", "{C374C46F-C1FA-4A96-A16C-479F9AAAB61B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.Publisher.WebJob", "src\Sample.Publisher.WebJob\Sample.Publisher.WebJob.csproj", "{C374C46F-C1FA-4A96-A16C-479F9AAAB61B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{4E7B04F3-08CF-49F0-8250-1E4E8916E4F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Publisher.WebJob.Tests", "tests\Sample.Publisher.WebJob.Tests\Sample.Publisher.WebJob.Tests.csproj", "{8616E4CC-9D5E-4AD1-97FB-A89C4FF87282}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.Publisher.WebJob.Tests", "tests\Sample.Publisher.WebJob.Tests\Sample.Publisher.WebJob.Tests.csproj", "{8616E4CC-9D5E-4AD1-97FB-A89C4FF87282}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Publisher.Core", "src\Sample.Publisher.Core\Sample.Publisher.Core.csproj", "{342A669A-1320-4896-87DE-F41690AF8C1F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.Publisher.Core", "src\Sample.Publisher.Core\Sample.Publisher.Core.csproj", "{342A669A-1320-4896-87DE-F41690AF8C1F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Publisher.Core.Tests", "tests\Sample.Publisher.Core.Tests\Sample.Publisher.Core.Tests.csproj", "{59AB5A87-0975-434C-81E1-63F4604221A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{C374C46F-C1FA-4A96-A16C-479F9AAAB61B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -34,10 +33,21 @@ Global
 		{342A669A-1320-4896-87DE-F41690AF8C1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{342A669A-1320-4896-87DE-F41690AF8C1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{342A669A-1320-4896-87DE-F41690AF8C1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59AB5A87-0975-434C-81E1-63F4604221A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59AB5A87-0975-434C-81E1-63F4604221A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59AB5A87-0975-434C-81E1-63F4604221A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59AB5A87-0975-434C-81E1-63F4604221A6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{C374C46F-C1FA-4A96-A16C-479F9AAAB61B} = {F6B8D833-224D-456A-90CF-C650F37A0596}
 		{8616E4CC-9D5E-4AD1-97FB-A89C4FF87282} = {4E7B04F3-08CF-49F0-8250-1E4E8916E4F5}
 		{342A669A-1320-4896-87DE-F41690AF8C1F} = {F6B8D833-224D-456A-90CF-C650F37A0596}
+		{59AB5A87-0975-434C-81E1-63F4604221A6} = {4E7B04F3-08CF-49F0-8250-1E4E8916E4F5}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C13F9B0E-99EA-4D38-9145-4EF753C5608B}
 	EndGlobalSection
 EndGlobal

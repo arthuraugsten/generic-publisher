@@ -1,26 +1,23 @@
-using System;
-using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using Moq;
-using Sample.Publisher.WebJob.Services.Exceptions;
-using Xunit;
+using Sample.Publisher.Core.Exceptions;
 
-namespace Sample.Publisher.WebJob.Tests.Services.Exceptions;
+namespace Sample.Publisher.Core.Tests.Exceptions;
 
-public sealed class ArgumentHandlerTests
+public sealed class NullReferenceHandlerTests
 {
-    private readonly Mock<ILogger<ArgumentHandler>> _logger = new();
-    private readonly ArgumentHandler _handler;
+    private readonly Mock<ILogger<NullReferenceHandler>> _logger = new();
+    private readonly NullReferenceHandler _handler;
 
-    public ArgumentHandlerTests()
+    public NullReferenceHandlerTests()
     {
-        _handler = new(_logger.Object);
+        _handler = new();
     }
 
     [Fact]
     public void ShouldBeExpectedException()
-        => _handler.ExceptionType.Should().Be<ArgumentException>();
+        => _handler.ExceptionType.Should().Be<NullReferenceException>();
 
     [Fact]
     public async Task ShouldNotLogWhenIncorrectType()
@@ -32,13 +29,13 @@ public sealed class ArgumentHandlerTests
     [Fact]
     public async Task ShouldLogWhenCorrectType()
     {
-        await _handler.HandleExceptionAsync(new ArgumentException());
+        await _handler.HandleExceptionAsync(new NullReferenceException());
 
         _logger.Verify(t =>
             t.Log(
                 It.Is<LogLevel>(logLevel => logLevel == LogLevel.Information),
                 It.Is<EventId>(eventId => eventId.Id == 0),
-                It.Is<It.IsAnyType>((@object, @type) => @object.ToString() == "Handling Argument Exception" && @type.Name == "FormattedLogValues"),
+                It.Is<It.IsAnyType>((@object, @type) => @object.ToString() == "Handling Null Reference Exception" && @type.Name == "FormattedLogValues"),
                 It.IsAny<Exception>(),
                 It.IsAny<Func<It.IsAnyType, Exception?, string>>()
             ),

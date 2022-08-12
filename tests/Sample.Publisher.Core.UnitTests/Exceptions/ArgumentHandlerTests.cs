@@ -1,6 +1,4 @@
-using FluentAssertions;
 using Microsoft.Extensions.Logging;
-using Moq;
 using Sample.Publisher.Core.Exceptions;
 
 namespace Sample.Publisher.Core.Tests.Exceptions;
@@ -8,12 +6,7 @@ namespace Sample.Publisher.Core.Tests.Exceptions;
 public sealed class ArgumentHandlerTests
 {
     private readonly Mock<ILogger<ArgumentHandler>> _logger = new();
-    private readonly ArgumentHandler _handler;
-
-    public ArgumentHandlerTests()
-    {
-        _handler = new();
-    }
+    private readonly ArgumentHandler _handler = new();
 
     [Fact]
     public void ShouldBeExpectedException()

@@ -2,7 +2,7 @@ namespace Sample.Publisher.Core.Exceptions;
 
 public abstract class BaseHandler
 {
-    protected BaseHandler? Next;
+    internal BaseHandler? Next;
 
     public abstract Type ExceptionType { get; }
 

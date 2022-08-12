@@ -11,7 +11,7 @@ public static class ExceptionsExtensions
         services.AddSingleton<GenericHandler>();
     }
 
-    public static void ConfigureExceptionHandler(this IServiceCollection services)
+    public static void ConfigureBasicExceptionHandler(this IServiceCollection services)
     {
         ArgumentNullException.ThrowIfNull(services);
 

@@ -1,6 +1,4 @@
-using FluentAssertions;
 using Microsoft.Extensions.Logging;
-using Moq;
 using Sample.Publisher.Core.Exceptions;
 
 namespace Sample.Publisher.Core.Tests.Exceptions;
@@ -8,12 +6,7 @@ namespace Sample.Publisher.Core.Tests.Exceptions;
 public sealed class GenericHandlerTests
 {
     private readonly Mock<ILogger<GenericHandler>> _logger = new();
-    private readonly GenericHandler _handler;
-
-    public GenericHandlerTests()
-    {
-        _handler = new();
-    }
+    private readonly GenericHandler _handler = new();
 
     public static List<object[]> ValidExceptions { get; } = new(2)
         {
